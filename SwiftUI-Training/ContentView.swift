@@ -1,9 +1,3 @@
-//
-//  ContentView.swift
-//  SwiftUI-Training
-//
-//  Created by Hasegawa Akito on 2023/01/26.
-//
 
 import SwiftUI
 
@@ -13,9 +7,14 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Image(imgName)
+                .resizable() // 画面のサイズにぴったり収まるようにする
+                .aspectRatio(contentMode: .fit) // 崩れた縦横比をうまくフィットさせる
             Button("次へ") {
                 imgName = "mycar"
             }
+            .padding()
+            .background(Color.gray)
+            .foregroundColor(Color.white)
         }
         
     }
