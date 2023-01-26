@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var imgName = "snowboard"
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Image(imgName)
+            Button("次へ") {
+                imgName = "mycar"
+            }
+        }
+        
     }
 }
 
