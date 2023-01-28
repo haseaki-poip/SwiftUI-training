@@ -6,15 +6,36 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Image(imgName)
-                .resizable() // 画面のサイズにぴったり収まるようにする
-                .aspectRatio(contentMode: .fit) // 崩れた縦横比をうまくフィットさせる
-            Button("次へ") {
-                imgName = "mycar"
+            ZStack {
+                Image(imgName)
+                    .resizable() // 画面のサイズにぴったり収まるようにする
+                    .aspectRatio(contentMode: .fit) // 崩れた縦横比をうまくフィットさせる
+                Color.gray
+                    .frame(width: 200, height: 100)
+                    .opacity(0.5)
+                Text(imgName)
+                    .foregroundColor(Color.white)
             }
-            .padding()
-            .background(Color.gray)
-            .foregroundColor(Color.white)
+            
+            HStack {
+                Button("前へ") {
+                    imgName = "snowboard"
+                }
+                .padding()
+                .background(Color.gray)
+                .foregroundColor(Color.white)
+                .padding(.trailing, 10)
+                
+                Button("次へ") {
+                    imgName = "mycar"
+                }
+                .padding()
+                .background(Color.gray)
+                .foregroundColor(Color.white)
+                .padding(.leading, 10)
+                
+            }
+            
         }
         
     }
