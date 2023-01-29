@@ -35,6 +35,14 @@ struct ContentView: View {
                 .padding(.leading, 10)
                 
             }
+            NavigationView {
+                NavigationLink("ページ遷移", destination: Text("2ページ目")
+                                .navigationTitle("ページ2")
+                                
+                )
+            }
+            .frame(height: 200)
+            // このNavigationViewの範囲内のところのみが遷移する。
             
         }
         
