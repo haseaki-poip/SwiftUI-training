@@ -48,8 +48,14 @@ class OkashiData: ObservableObject {
         
         print(req_url)
         
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+        // 画面更新やPublishedを更新する際メインスレッドで行う必要がある
+        // OperationQueue.mainによって可能
+        // OperationQueue.mainを設定しないと外部でPublishedを変更できないと警告が出る
 
-        let task = URLSession.shared.dataTask(with: req_url, completionHandler: { data , response, error in
+        let task = session.dataTask(with: req_url, completionHandler: { data , response, error in
+           session.finishTasksAndInvalidate()
+            
            if let error = error {
                print(error.localizedDescription)
                print("通信が失敗しました")
@@ -87,6 +93,9 @@ class OkashiData: ObservableObject {
                                self.okashiList.append(okashi)
                            }
                        }
+                   }
+                   else {
+                       self.okashiList.removeAll()
                    }
                    
                    print(self.okashiList)
