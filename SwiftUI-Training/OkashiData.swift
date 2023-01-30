@@ -6,6 +6,16 @@
 //
 
 import Foundation
+import UIKit
+
+// Identifiableは一意に識別できる型
+// id = UUID()でデータを一意に特定するためのIDを生成する
+struct OkashiItem: Identifiable {
+    let id = UUID() // idは型定義ではなくUUIDを代入していることに注意
+    let name: String
+    let link: URL
+    let image: UIImage
+}
 // ObservableObjectはclassで定義しなければならない。structではダメ
 class OkashiData: ObservableObject {
     // Jsonデータ構造
@@ -14,11 +24,13 @@ class OkashiData: ObservableObject {
             let name: String?
             let url: URL?
             let image: URL?
-            let comment: String?
+//            let comment: String?
         }
         
         let item: [Item]?
     }
+    
+    @Published var okashiList: [OkashiItem] = []
     
     func serchOkashi(keyword: String){
         
@@ -51,15 +63,35 @@ class OkashiData: ObservableObject {
            }
            
            if response.statusCode == 200 {
-               // パターン1
-               // 結果：通信結果のJSONをStringで得る。  -> { "id": 1, "name": "GOOD" }
+               // 結果：通信結果のJSONをStringで得る。
                print(String(data: data, encoding: .utf8)!)
                
                // パターン2:JSON形式を構造体(Struct）に変換して使用する
                do {
-                   // 結果:UserInfo構造体（Struct）を取得できる -> UserInfo
+                   
                    let json = try JSONDecoder().decode(ResultJson.self, from: data)
                    print(json)
+                   
+                   if let items = json.item { // itemsに代入しつつ、それがnilかどうか。nilでなければその{}の処理を行え、その中でitemsを使える
+                       self.okashiList.removeAll()
+                       
+                       for item in items {
+                           if let name = item.name,      // 値があれば次の行を実行
+                              let link = item.url,       // 値があれば次の行を実行
+                              let imageURL = item.image, // 値があれば次の行を実行
+                              let imageData = try? Data(contentsOf: imageURL), // 値があれば次の行を実行
+                              let image = UIImage(data: imageData)?.withRenderingMode(.alwaysOriginal) {
+                               
+                               // ifにより上の要素が一つもnilでないため以下の処理を行うことができる
+                               let okashi = OkashiItem(name: name, link: link, image: image)
+                               self.okashiList.append(okashi)
+                           }
+                       }
+                   }
+                   
+                   print(self.okashiList)
+                   
+                   
                } catch let error {
                    print(":エラー:\(error)") // JSONの値がIDがIntなのに、StructでIDをStringと宣言している時などエラーになる。
                }

@@ -12,6 +12,7 @@
 		082095282982A1E60099DB79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 082095272982A1E60099DB79 /* Assets.xcassets */; };
 		0820952B2982A1E60099DB79 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0820952A2982A1E60099DB79 /* Preview Assets.xcassets */; };
 		08BA8FDA2987517600090E35 /* OkashiData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BA8FD92987517600090E35 /* OkashiData.swift */; };
+		08BA8FDC2987FC5500090E35 /* OkashiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BA8FDB2987FC5500090E35 /* OkashiView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		082095272982A1E60099DB79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0820952A2982A1E60099DB79 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		08BA8FD92987517600090E35 /* OkashiData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkashiData.swift; sourceTree = "<group>"; };
+		08BA8FDB2987FC5500090E35 /* OkashiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkashiView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				082095232982A1E50099DB79 /* SwiftUI_TrainingApp.swift */,
+				08BA8FDB2987FC5500090E35 /* OkashiView.swift */,
 				082095252982A1E50099DB79 /* ContentView.swift */,
 				08BA8FD92987517600090E35 /* OkashiData.swift */,
 				082095272982A1E60099DB79 /* Assets.xcassets */,
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				082095262982A1E50099DB79 /* ContentView.swift in Sources */,
+				08BA8FDC2987FC5500090E35 /* OkashiView.swift in Sources */,
 				08BA8FDA2987517600090E35 /* OkashiData.swift in Sources */,
 				082095242982A1E50099DB79 /* SwiftUI_TrainingApp.swift in Sources */,
 			);

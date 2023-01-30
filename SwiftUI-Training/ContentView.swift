@@ -54,9 +54,10 @@ struct ContentView: View {
             }
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
-                    Button("2ページ目遷移") {
-                       
-                    }
+                    NavigationLink("お菓子ページ目遷移", destination: OkashiView()
+                                    .navigationTitle("お菓子ページ")
+                                    
+                    )
                 }
             }
         }
