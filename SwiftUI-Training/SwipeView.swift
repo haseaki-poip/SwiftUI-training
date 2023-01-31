@@ -32,7 +32,7 @@ struct SwipeView: View {
         }
     }
     
-    private let frameWidth:CGFloat = CGFloat(
+    private let frameWidth: CGFloat = CGFloat(
         UIScreen.main.bounds.width
     )
     
@@ -101,69 +101,50 @@ struct SwipeView: View {
                 .background(Color.blue)
             
             HStack {
-                ZStack {
-                    Color.white
-                        .frame(width: 65, height: 65)
-                        .cornerRadius(50)
-                        .shadow(radius: 10)
-                    
-                    Button(action: {
-                        
-                        
-                    }, label: {
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(Color.red)
-                    })
-                        
-                }
-                .frame(width: frameWidth / 4)
                 
-                ZStack {
-                    Color.gray
-                        .frame(width: 50, height: 50)
-                        .cornerRadius(50)
-                    
-                    Button(action: {
-                        
-                        
-                    }, label: {
-                        Image(systemName: "questionmark")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 15, height: 15)
-                            .foregroundColor(Color.white)
-                    })
-                        
-                }
-                .frame(width: frameWidth / 4)
+                BottomButtonView(frameWidth: frameWidth, imageSize: 30, backgroundSize: 65, imageName: "xmark", imageColor: Color(UIColor.systemPink), backgroundColor: Color(UIColor.white))
                 
-                ZStack {
-                    Color.white
-                        .frame(width: 65, height: 65)
-                        .cornerRadius(50)
-                        .shadow(radius: 10)
-                    
-                    Button(action: {
-                        
-                        
-                    }, label: {
-                        Image(systemName: "heart.fill")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(Color.pink)
-                    })
-                        
-                }
-                .frame(width: frameWidth / 4)
+                BottomButtonView(frameWidth: frameWidth, imageSize: 15, backgroundSize: 50, imageName: "questionmark", imageColor: Color(UIColor.white), backgroundColor: Color(UIColor.gray))
+                
+                BottomButtonView(frameWidth: frameWidth, imageSize: 30, backgroundSize: 65, imageName: "heart", imageColor: Color(UIColor.systemPink), backgroundColor: Color(UIColor.white))
                        
             }
             .padding()
             .frame(width: frameWidth)
         }
+    }
+}
+
+
+struct BottomButtonView: View {
+    
+    let frameWidth: CGFloat
+    let imageSize: CGFloat
+    let backgroundSize: CGFloat
+    let imageName: String
+    let imageColor: Color
+    let backgroundColor: Color
+    
+    var body: some View {
+        ZStack {
+            backgroundColor
+                .frame(width: backgroundSize, height: backgroundSize)
+                .cornerRadius(50)
+                .shadow(radius: 10)
+            
+            Button(action: {
+                
+                
+            }, label: {
+                Image(systemName: imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: imageSize, height: imageSize)
+                    .foregroundColor(imageColor)
+            })
+                
+        }
+        .frame(width: frameWidth / 4)
     }
 }
 
