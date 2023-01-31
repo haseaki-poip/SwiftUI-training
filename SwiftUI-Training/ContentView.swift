@@ -15,8 +15,9 @@ struct ContentView: View {
                 )
                 ZStack {
                     Image(imgName)
-                        .resizable() // 画面のサイズにぴったり収まるようにする
+                        .resizable() // imageのサイズを変更可能にする
                         .aspectRatio(contentMode: .fit) // 崩れた縦横比をうまくフィットさせる
+                    // 画面のサイズにぴったり収まるようにする
                     Color.gray
                         .frame(width: 200, height: 100)
                         .opacity(0.5)
@@ -54,8 +55,13 @@ struct ContentView: View {
             }
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
-                    NavigationLink("お菓子ページ目遷移", destination: OkashiView()
+                    NavigationLink("お菓子ページ", destination: OkashiView()
                                     .navigationTitle("お菓子ページ")
+                                    
+                    )
+                    
+                    NavigationLink("tinderページ", destination: SwipeView()
+                                  
                                     
                     )
                 }
