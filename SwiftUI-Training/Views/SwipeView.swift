@@ -29,10 +29,20 @@ struct CardView: View {
         
         
         GeometryReader(content: { geometry in
-            Image("snowboard")
-                .resizable()
-                .scaledToFill() // 縦横比を保ちながらframeを埋め尽くす
-                .frame(width: geometry.size.width, height: geometry.size.height)
+            ZStack {
+                
+                Color.white
+                
+                Image("snowboard")
+                    .resizable()
+                    .scaledToFill() // 縦横比を保ちながらframeを埋め尽くす
+                    // padingで開ける分画像のサイズを小さくする
+                    .frame(width: geometry.size.width - 20, height: geometry.size.height - 20)
+                    
+            }
+            .cornerRadius(10)
+            .padding(.all, 10)
+            .shadow(radius: 10)
                 
         })
         
