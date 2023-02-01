@@ -1,7 +1,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     @State var imgName = "snowboard"
     @State var inputText = ""
     @ObservedObject var okashiDatalist = OkashiData()
@@ -71,8 +71,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HomeView()
     }
 }
