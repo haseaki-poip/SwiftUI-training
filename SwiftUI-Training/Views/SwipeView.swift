@@ -15,16 +15,31 @@ struct SwipeView: View {
             
             TopControllView()
             
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-                .padding()
-                .frame(width: frameWidth, height: 550)
-                .background(Color.blue)
+            CardView()
             
             BottomControllView()
             
         }
+        .navigationBarHidden(true) // 画面遷移後のbackボタンやtitle部分のNavigationBarを削除
     }
 }
+
+struct CardView: View {
+    var body: some View {
+        
+        
+        GeometryReader(content: { geometry in
+            Image("snowboard")
+                .resizable()
+                .scaledToFill() // 縦横比を保ちながらframeを埋め尽くす
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                
+        })
+        
+        
+    }
+}
+
 
 
 struct SwipeView_Previews: PreviewProvider {

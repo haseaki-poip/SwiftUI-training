@@ -91,6 +91,7 @@ class OkashiData: ObservableObject {
                                // ifにより上の要素が一つもnilでないため以下の処理を行うことができる
                                let okashi = OkashiItem(name: name, link: link, image: image)
                                self.okashiList.append(okashi)
+                               
                            }
                        }
                    }

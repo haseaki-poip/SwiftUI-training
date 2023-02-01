@@ -60,13 +60,12 @@ struct HomeView: View {
                                     
                     )
                     
-                    NavigationLink("tinderページ", destination: SwipeView()
-                                  
-                                    
-                    )
+                    NavigationLink("tinderページ", destination: SwipeView())
                 }
+                
             }
         }
+        
         
     }
 }
