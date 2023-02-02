@@ -68,15 +68,21 @@ struct CardView: View {
                             print(value.translation.width)
                         })
                         .onEnded({ value in
-                            if value.startLocation.x - 170 > value.location.x {
+                            if value.startLocation.x - 150 > value.location.x {
                                 transation = .init(width: -800, height: 0)
-                                numbers.removeLast()
-                                transation = .zero
+                                // 0.3秒遅らせて配列から削除して、animationを最後まで行わせる
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                                        numbers.removeLast()
+                                        transation = .zero
+                                })
+                                
                             }
-                            else if value.startLocation.x + 170 < value.location.x {
+                            else if value.startLocation.x + 150 < value.location.x {
                                 transation = .init(width: 800, height: 0)
-                                numbers.removeLast()
-                                transation = .zero
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                                        numbers.removeLast()
+                                        transation = .zero
+                                })
                             }
                             else {
                                 transation = .zero
