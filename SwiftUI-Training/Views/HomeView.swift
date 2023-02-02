@@ -55,6 +55,17 @@ struct HomeView: View {
             }
             .toolbar {
                 ToolbarItemGroup(placement: .bottomBar) {
+                    NavigationLink(destination: {
+                        OkashiView()
+                                }, label: {
+                                    Image(systemName: "flame.fill")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 30, height: 30)
+                                        // 三項演算子を使用して色を変化
+                                        .foregroundColor(Color.gray)
+                                })
+                    
                     NavigationLink("お菓子ページ", destination: OkashiView()
                                     .navigationTitle("お菓子ページ")
                                     
