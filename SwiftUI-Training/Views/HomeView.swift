@@ -4,16 +4,11 @@ import SwiftUI
 struct HomeView: View {
     @State var imgName = "snowboard"
     @State var inputText = ""
-    @ObservedObject var okashiDatalist = OkashiData()
     var webSocket = WebSocketController()
     
     var body: some View {
         NavigationView {
             VStack {
-                TextField("テキストを入力", text: $inputText, onCommit: {
-                    okashiDatalist.serchOkashi(keyword: inputText)
-                    }
-                )
                 ZStack {
                     Image(imgName)
                         .resizable() // imageのサイズを変更可能にする
@@ -45,13 +40,32 @@ struct HomeView: View {
                     
                 }
                 
-                Button("Socket") {
-                    webSocket.connect()
+                HStack {
+                    Button("Socket") {
+                        webSocket.connect()
+                    }
+                    .padding()
+                    .background(Color.gray)
+                    .foregroundColor(Color.white)
+                    .padding(.trailing, 10)
+                    
+                    Button("Create") {
+                        webSocket.createRoom()
+                    }
+                    .padding()
+                    .background(Color.gray)
+                    .foregroundColor(Color.white)
+                    .padding(.trailing, 10)
+                    
+                    Button("Join") {
+                        webSocket.joinRoom()
+                    }
+                    .padding()
+                    .background(Color.gray)
+                    .foregroundColor(Color.white)
+                    .padding(.trailing, 10)
                 }
-                .padding()
-                .background(Color.gray)
-                .foregroundColor(Color.white)
-                .padding(.trailing, 10)
+                
                 
                 NavigationView {
                     NavigationLink("1.1ページ目遷移", destination: Text("1.1ページ目")
@@ -63,28 +77,28 @@ struct HomeView: View {
                 // このNavigationViewの範囲内のところのみが遷移する。
                 
             }
-            .toolbar {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    NavigationLink(destination: {
-                        OkashiView()
-                                }, label: {
-                                    Image(systemName: "flame.fill")
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 30, height: 30)
-                                        // 三項演算子を使用して色を変化
-                                        .foregroundColor(Color.gray)
-                                })
-                    
-                    NavigationLink("お菓子ページ", destination: OkashiView()
-                                    .navigationTitle("お菓子ページ")
-                                    
-                    )
-                    
-                    NavigationLink("tinderページ", destination: SwipeView())
-                }
-                
-            }
+//            .toolbar {
+//                ToolbarItemGroup(placement: .bottomBar) {
+//                    NavigationLink(destination: {
+//                        OkashiView()
+//                                }, label: {
+//                                    Image(systemName: "flame.fill")
+//                                        .resizable()
+//                                        .scaledToFill()
+//                                        .frame(width: 30, height: 30)
+//                                        // 三項演算子を使用して色を変化
+//                                        .foregroundColor(Color.gray)
+//                                })
+//
+//                    NavigationLink("お菓子ページ", destination: OkashiView()
+//                                    .navigationTitle("お菓子ページ")
+//
+//                    )
+//
+//                    NavigationLink("tinderページ", destination: SwipeView())
+//                }
+//
+//            }
         }
         
         

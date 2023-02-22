@@ -4,6 +4,7 @@ import UIKit
 class WebSocketController: UIViewController, URLSessionWebSocketDelegate {
     
     private var webSocketTask: URLSessionWebSocketTask?
+    
     func connect() {
         let urlSession = URLSession(
             configuration: .default,
@@ -62,5 +63,44 @@ class WebSocketController: UIViewController, URLSessionWebSocketDelegate {
         print("did close connection")
     }
     
+    func createRoom() {
+        let url = URL(string: "http://localhost:8000/api/room/create")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" // POSTリクエスト
+        request.httpBody = "userName=akito".data(using: .utf8) // Bodyに情報を含める
+        URLSession.shared.dataTask(with: request, completionHandler: {(data, response, error) in
+            print("data: \(String(describing: data))")
+            print("response: \(String(describing: response))")
+            print("error: \(String(describing: error))")
+            print("------------------------------------")
+            do{
+                let responseData = try JSONSerialization.jsonObject(with: data!, options: [])
+                print(responseData)
+            }
+            catch {
+                print(error)
+            }
+        }).resume()
+    }
+    
+    func joinRoom() {
+        let url = URL(string: "http://localhost:8000/api/room/join")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST" // POSTリクエスト
+        request.httpBody = "userName=akito".data(using: .utf8) // Bodyに情報を含める
+        URLSession.shared.dataTask(with: request, completionHandler: {(data, response, error) in
+            print("data: \(String(describing: data))")
+            print("response: \(String(describing: response))")
+            print("error: \(String(describing: error))")
+            print("------------------------------------")
+            do{
+                let responseData = try JSONSerialization.jsonObject(with: data!, options: [])
+                print(responseData)
+            }
+            catch {
+                print(error)
+            }
+        }).resume()
+    }
 }
 
