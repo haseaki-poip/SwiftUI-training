@@ -33,6 +33,7 @@ class OkashiData: ObservableObject {
     @Published var okashiList: [OkashiItem] = []
     
     init() {
+        print("a")
         self.serchOkashi(keyword: "カレー味")
         
     }
@@ -83,17 +84,20 @@ class OkashiData: ObservableObject {
                        self.okashiList.removeAll()
                        
                        for item in items {
+                           
+                               
                            if let name = item.name,      // 値があれば次の行を実行
                               let link = item.url,       // 値があれば次の行を実行
                               let imageURL = item.image, // 値があれば次の行を実行
                               let imageData = try? Data(contentsOf: imageURL), // 値があれば次の行を実行
                               let image = UIImage(data: imageData)?.withRenderingMode(.alwaysOriginal) {
-                               
+                
                                // ifにより上の要素が一つもnilでないため以下の処理を行うことができる
                                let okashi = OkashiItem(name: name, link: link, image: image)
                                self.okashiList.append(okashi)
                                
                            }
+                           
                        }
                    }
                    else {

@@ -5,6 +5,7 @@ struct HomeView: View {
     @State var imgName = "snowboard"
     @State var inputText = ""
     @ObservedObject var okashiDatalist = OkashiData()
+    var webSocket = WebSocketController()
     
     var body: some View {
         NavigationView {
@@ -43,6 +44,15 @@ struct HomeView: View {
                     .padding(.leading, 10)
                     
                 }
+                
+                Button("Socket") {
+                    webSocket.connect()
+                }
+                .padding()
+                .background(Color.gray)
+                .foregroundColor(Color.white)
+                .padding(.trailing, 10)
+                
                 NavigationView {
                     NavigationLink("1.1ページ目遷移", destination: Text("1.1ページ目")
                                     .navigationTitle("ページ1.1")
